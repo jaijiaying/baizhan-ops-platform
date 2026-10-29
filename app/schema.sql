@@ -1,0 +1,10 @@
+CREATE DATABASE IF NOT EXISTS baizhan_operation CHARACTER SET utf8mb4;
+USE baizhan_operation;
+CREATE TABLE t_users(id BIGINT PRIMARY KEY AUTO_INCREMENT,username VARCHAR(64) UNIQUE,password VARCHAR(255),name VARCHAR(128),department VARCHAR(128),created_at DATETIME);
+CREATE TABLE t_sections(id BIGINT PRIMARY KEY AUTO_INCREMENT,user_id BIGINT,source_name VARCHAR(255),name VARCHAR(128),created_at DATETIME,updated_at DATETIME);
+CREATE TABLE t_titles(id BIGINT PRIMARY KEY AUTO_INCREMENT,section_id BIGINT,title VARCHAR(255),sort_order INT,content TEXT,status TINYINT DEFAULT 0,view_count INT DEFAULT 0,like_count INT DEFAULT 0,created_at DATETIME,updated_at DATETIME);
+CREATE TABLE t_title_images(id BIGINT PRIMARY KEY AUTO_INCREMENT,user_id BIGINT,title_id BIGINT,image_url TEXT,image_type TINYINT,sort_order INT,file_size BIGINT,width INT,height INT,created_at DATETIME);
+CREATE TABLE t_style(id BIGINT PRIMARY KEY AUTO_INCREMENT,name VARCHAR(128),fengge TEXT,create_time DATETIME);
+CREATE TABLE t_models(id BIGINT PRIMARY KEY AUTO_INCREMENT,name VARCHAR(128),type VARCHAR(32),version VARCHAR(64),description TEXT,status TINYINT,created_at DATETIME,updated_at DATETIME);
+CREATE TABLE t_publish_records(id BIGINT PRIMARY KEY AUTO_INCREMENT,user_id BIGINT,title_id BIGINT,platform TINYINT,publish_status TINYINT,publish_time DATETIME,content TEXT,view_count INT,like_count INT,comment_count INT,share_count INT,created_at DATETIME,updated_at DATETIME);
+CREATE TABLE t_publish_images(id BIGINT PRIMARY KEY AUTO_INCREMENT,publish_id BIGINT,image_id BIGINT,image_type TINYINT,sort_order INT,created_at DATETIME);
